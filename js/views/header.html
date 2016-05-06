@@ -10,10 +10,13 @@
 <div class="oj-web-applayout-max-width oj-flex-bar oj-sm-align-items-center">
   <!-- Offcanvas toggle button -->
   <div class="oj-flex-bar-start oj-md-hide">
-    <button class="oj-button-lg" data-bind="click: $parent.toggleDrawer,
-      ojComponent: {component:'ojButton', label: 'Application Navigation',
-      chroming: 'half', display: 'icons', icons: {start: 'oj-web-applayout-offcanvas-icon'}}">
-    </button>
+    <oj-button params="
+      click: $parent.toggleDrawer,
+      label: 'Application Navigation',
+      chroming: 'half',
+      display: 'icons',
+      icons: {start: 'oj-web-applayout-offcanvas-icon'}
+    " class="oj-button-lg"></oj-button>
   </div>
   <div data-bind="css: smScreen() ? 'oj-flex-bar-center-absolute' : 'oj-flex-bar-middle oj-sm-align-items-baseline'">
     <span role="img" class="oj-sm-only-hide oj-icon demo-oracle-icon" title="Oracle Logo" alt="Oracle Logo"></span>
@@ -21,27 +24,25 @@
   </div>
   <div class="oj-flex-bar-end">
     <!-- Responsive Toolbar -->
-    <div data-bind="ojComponent: {component:'ojToolbar'}">
-      <button data-bind="ojComponent: {component:'ojButton',
+    <oj-toolbar>
+      <oj-button params="
         label: 'Search', display: 'icons', chroming: 'half',
-        icons: {start:'oj-fwk-icon-magnifier oj-fwk-icon'}}">
-      </button>
+        icons: {start:'oj-fwk-icon-magnifier oj-fwk-icon'}
+      " class="oj-button-lg"></oj-button>
       <span class="oj-toolbar-separator" role="separator" aria-orientation="vertical"></span>
-      <button id="userMenu"
-        data-bind="ojComponent: {component: 'ojButton', label: userLogin,
+      <oj-button params="label: userLogin,
         display: smScreen() ? 'icons' : 'all',
         icons: smScreen() ? {start: 'oj-icon demo-avatar-icon', end: null} : {end: null},
-        chroming: 'half', menu: '#menu1'}">
-      </button>
-      <ul id='menu1' data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}" style="display:none">
+        chroming: 'half', menu: '#menu1'
+      " id="userMenu"></oj-button>
+      <oj-menu params="select: menuItemSelect, id:'menu1'" style="display:none">
         <li id="pref"><a href="#">Preferences</a></li>
         <li id="help"><a href="#">Help</a></li>
         <li id="about"><a href="#">About</a></li>
         <li id="out"><a href="#">Sign Out</a></li>
-      </ul>
-      <div style="display:none" id="aboutDialog" title="About JET QuickStart Basic"
-        data-bind="ojComponent:{component: 'ojDialog',
-        rootAttributes: { style: 'width: 620px; height: 350px;'}}">
+      </oj-menu>
+      <oj-dialog style="display:none"
+        params="rootAttributes: { style: 'width: 620px; height: 350px;'}, id:'aboutDialog', title:'About JET QuickStart Basic'">
         <div class="oj-dialog-body">
           The Oracle JET QuickStart Basic template is meant as an example of how to setup a
           very basic Single-Page-Application(SPA) with the JET libraries configured correctly.<br/><br/>
@@ -53,13 +54,18 @@
         <footer class="oj-dialog-footer oj-web-applayout-footer"
           role="contentinfo" data-bind="ojModule: 'footer'">
         </footer>
-      </div>
-    </div>
+      </oj-dialog>
+    </oj-toolbar>
   </div>
 </div>
-<div role="navigation" data-bind="ojComponent: {component: 'ojNavigationList',
-  optionChange: $parent.navChange, navigationLevel: 'application',
-  item: {template: 'navTemplate'}, data: $parent.navDataSource,
-  selection: $parent.router.stateId(), edge: 'top'}"
-  class="oj-web-applayout-navbar oj-sm-only-hide oj-web-applayout-max-width oj-navigationlist-item-dividers oj-md-condense oj-md-justify-content-center oj-lg-justify-content-flex-end">
-</div>
+<oj-navigation-list params="
+    optionChange: $parent.navChange,
+    navigationLevel: 'application',
+    item: {template: 'navTemplate'},
+    data: $parent.navDataSource,
+    selection: $parent.router.stateId(),
+    edge: 'top',
+    rootAttributes:{
+        class:'oj-web-applayout-navbar oj-sm-only-hide oj-web-applayout-max-width oj-navigationlist-item-dividers oj-md-condense oj-md-justify-content-center oj-lg-justify-content-flex-end'
+    }
+"></oj-navigation-list>

@@ -7,8 +7,11 @@
   This data is hidden in off-canvas content
   until the user clicks on the hamburger icon.
 -->
-<div role="navigation" data-bind="ojComponent: {component: 'ojNavigationList',
-  optionChange: $parent.navChange, navigationLevel: 'application',
-  item: {template: 'navTemplate'}, data: $parent.navDataSource,
-  selection: $parent.router.stateId(), edge: 'start'}">
-</div>
+<oj-navigation-list params="
+    optionChange: $parent.navChange,
+    navigationLevel: 'application',
+    item: {template: 'navTemplate'},
+    data: $parent.navDataSource,
+    selection: $parent.router.stateId(),
+    edge: 'start'
+"></oj-navigation-list>
